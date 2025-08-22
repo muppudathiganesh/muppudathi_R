@@ -1,0 +1,812 @@
+{% extends "portfolio_app/base.html" %}
+{% load static %}
+{% block title %}Home - Muppudathi Portfolio{% endblock %}
+{% block extra_css %}
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins',sans-serif;
+    box-sizing: border-box;
+   
+}
+body{
+   background-color: #080808 !important;
+    color: white;
+    overflow-x: hidden;
+    
+}
+ 
+html{
+    scroll-behavior: smooth;
+}
+.navbar{
+ 
+    padding: 10px 5%;
+    background-color: #080808 !important;
+    
+
+} 
+.navbar-brand{
+    width:140px;
+} 
+  
+
+nav{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+nav ul li{
+   display: inline-block;
+   list-style: none;
+   margin: 10px 20px;
+} 
+nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+} 
+nav ul li a::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #ff004f;
+    position: absolute;
+    left:0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+nav ul li a:hover::after{
+    width:100%;
+}
+/* .header{
+     padding-top: 100px; 
+    padding-bottom: 40px;
+    background-color: #080808;
+}
+
+.header-text {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+    text-align: left;
+}
+
+
+.header-text h1{
+    font-size: 40px;
+    
+}
+.header-text h1 span{
+    color: #ff004f;
+}  */
+  /* Base Styles */
+.header {
+    padding-top: 100px; /* Space for fixed navbar */
+    padding-bottom: 40px;
+    background-color: #080808;
+}
+
+.header-text {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 20px;
+    font-size: 30px;
+    color: white;
+    text-align: left;
+}
+
+.header-text p {
+    font-size: 18px;
+    margin: 0 0 10px;
+    color: #ff004f;
+    letter-spacing: 1px;
+}
+
+.header-text h1 {
+    font-size: 40px;
+    margin: 10px 0;
+}
+
+.header-text h1 span {
+    color: #ff004f;
+}
+
+.header-text h4 {
+    font-size: 20px;
+    color: #ccc;
+    margin-top: 15px;
+}
+
+
+/* Tablet View */
+@media (max-width: 768px) {
+    .header-text {
+        font-size: 24px;
+        padding: 15px;
+    }
+
+    .header-text h1 {
+        font-size: 32px;
+    }
+
+    .header-text h4 {
+        font-size: 18px;
+    }
+
+    .header-text p {
+        font-size: 16px;
+    }
+}
+
+
+/* Mobile View */
+@media (max-width: 480px) {
+    .header {
+        padding-top: 80px;
+        padding-bottom: 30px;
+    }
+
+    .header-text {
+        font-size: 20px;
+        padding: 10px;
+        text-align: center; /* center-align for better mobile appearance */
+    }
+
+    .header-text h1 {
+        font-size: 26px;
+    }
+
+    .header-text h4 {
+        font-size: 16px;
+    }
+
+    .header-text p {
+        font-size: 14px;
+    }
+}
+
+/* about */
+#about{
+    background-color: #080808;
+    margin-top: 10px;
+    /* padding: 60px 0 ; */
+    color: #ababab;
+}
+.row{
+    display:flex;
+    justify-content: space-between;
+    gap:20px;
+    
+    
+}
+.about-col-1{
+    flex-basis: 35%;
+}
+.about-col-1 img{
+    width:300px;
+    border-radius: 15px;
+}
+.about-col-2{
+    flex-basis: 60%;
+}
+.sub-title{
+    font-size: 40px;
+    font-weight: 600;
+    color:#fff;
+}
+.tab-titles{
+    display:flex;
+    margin:20px 0 40px;
+    
+}
+.tab-links{
+    margin-right: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor:pointer;
+    position: relative;
+    
+}
+.tab-links::after{
+    content:'';
+    width:0;
+    height: 3px;
+    background: #ff004f;
+    position: absolute;
+    left:0;
+    bottom:-8px;
+    transition: 0.5s;
+}
+.tab-links.active-link::after{
+    width:50%;
+    
+
+}
+.tab-contents ul li {
+    list-style: none;
+    margin:10px 0;
+}
+.tab-contents ul li span{
+    color: #b54769;
+    font-size: 14px;
+}
+.tab-contents{
+    display:none;
+}
+ .tab-contents.active-tab{
+    display: block;
+} 
+/* portfoilo */
+ section{
+    margin-top: 50px;
+    text-align: center;
+    align-items: center;
+  background-color: #080808;
+}
+#box{
+    display: flex;
+    justify-content: center;
+    gap:40px;
+    perspective: 1000px;
+   
+}
+
+#box ul li{
+    list-style: none;
+    padding: 20px 0;
+
+}
+#box h1{
+    color: #fff;
+}
+.box1{
+     background-color: #e8b5c5;
+    border: 2px solid #b54769;
+    box-shadow: 2px 5px 10px plum;
+    border-radius: 20px;
+    width: 300px;
+    height: auto;
+     transition: transform 0.6s ease;
+  transform-style: preserve-3d; /* Enables 3D rotation */
+}
+.box1:hover{
+    background-color: #f17ea2;
+     transform: rotateY(360deg); /* 360° spin on hover */
+} 
+
+
+
+
+.box1:hover {
+ 
+  background-color: #f17ea2;
+}
+
+/* button */
+/* .seemore{
+
+ background-color: #080808;
+}
+.see{
+    display:block;
+    margin-top: 40px;
+    margin-left: 40%;
+    width:fit-content;
+    border:1px solid #ff004f;
+    padding: 14px 50px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+
+}
+.see:hover{
+    background-color: red;
+} */
+.seemore {
+    background-color: #080808;
+    display: flex;
+    justify-content: center; /* center button horizontally */
+    margin-top: 40px;
+}
+
+.see {
+    display: block;
+    width: fit-content; /* keeps width based on content */
+    border: 1px solid #ff004f;
+    padding: 14px 50px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    transition: 0.3s;
+    margin-left: 50px;
+}
+
+.see:hover {
+    background-color: red;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 480px) {
+    .see {
+        width: 90%;       /* take most of screen width */
+        padding: 12px 0;  /* smaller padding for mobile */
+        font-size: 14px;  /* smaller text for readability */
+        margin-left: 0;   /* override margin-left */
+    }
+}
+
+
+ 
+
+
+#contact {
+  background-color: #080808;
+  color: #fff;
+  padding: 60px 20px;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap; /* Makes it responsive */
+}
+
+.contact-left,
+.contact-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-left h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.contact-left p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.social-icons a {
+  margin-right: 15px;
+  font-size: 28px;
+}
+
+.contact-right form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-right input,
+.contact-right textarea {
+  background: #1e1e1e;
+  border: none;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+}
+
+.contact-right button {
+  background: #fff;
+  color: #d21562;
+  border: 2px solid #d21562;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-right button:hover {
+  background: #d21562;
+  color: #fff;
+}
+.copyright{
+     width:100%;
+    text-align: center;
+    padding: 25px 0;
+    background: #262626;
+    font-weight: 300;
+    margin-top: 20px;
+    color: white;
+}
+
+    @media (max-width: 768px) {
+    .header-text {
+        margin-top:20px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .header-text h1 {
+        font-size: 24px;
+    }
+
+    .about-col-1 img {
+        width: 200%;
+    }
+
+    .box1 {
+        width: 90%;
+        margin: 20px auto;
+    }
+
+    #box {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-left,
+  .contact-right {
+    width: 100%;
+  }
+
+  .contact-right button {
+    width: 100%;
+  }
+}
+
+.experience-projects {
+    background-color: #080808;
+    color: white;
+    padding: 60px 20px;
+}
+
+.experience-projects .sub-title {
+    font-size: 36px;
+    color: #ff004f;
+    margin-bottom: 20px;
+}
+
+.experience
+ {
+    margin-bottom: 40px;
+}
+
+
+@media (max-width: 768px) {
+  .experience-projects {
+    padding: 30px 10px;
+  }
+
+  .experience-projects .sub-title {
+    font-size: 28px;
+  }
+}
+.project-section {
+  padding: 60px 20px;
+  background-color: #080808;
+  color: white;
+  text-align: center;
+}
+
+.project-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.project-box {
+  background-color: #1e1e1e;
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ff004f;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(255, 0, 79, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.project-box:hover {
+  transform: translateY(-8px);
+  background-color: #2e2e2e;
+}
+
+.project-box h3 {
+  color: #ff004f;
+  margin-bottom: 10px;
+}
+
+.project-box a {
+  display: inline-block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #ff004f;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.project-box a:hover {
+  background-color: #ff004f;
+  color: #fff;
+}
+@media (max-width: 768px) {
+  .project-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .project-box {
+    width: 90%;
+  }
+}
+.project-box img.project-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="header">
+    <div class="header-text">
+        <p id="animated-title"> Full Stack Developer</p>
+        <h1>hi, i'm <span id="animated-name">Muppudathi</span><br>Rajendran from Chennai.</h1>
+        <h4> <span id="animated-skills" style="color: #ff004f;">
+          Html|Css|JavaScript|<br>ReactJs|Python|Django|<br>Flask|MYSQL|Github </span>
+        </h4>
+    </div>
+</div>
+
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="{% static 'portfolio_app/images/WhatsApp Image 2025-08-22 at 08.17.23_aeab944a.jpg' %}">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1><br>
+               
+                 <p>
+                        I am Muppudathi from Chennai, and I have completed my B.E. in Electronics and Communication Engineering (ECE). 
+                         I am a passionate Full Stack Developer with expertise in Python, specializing in both Frontend and Backend development. 
+                         My skills include building responsive web applications, working with Django and Flask frameworks, designing interactive user interfaces using HTML, CSS, JavaScript, and React, 
+                         and managing databases such as MySQL and SQLite. I enjoy solving real-world problems with clean and efficient code, 
+                         and I am always eager to learn new technologies to enhance my development journey.
+                 </p>
+
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents active-tab" id="skills">
+                    <ul>
+
+                        <li><span>Full Stack Developer</span></li>
+                        <!-- <li>Frontend Developer</li>
+                        <li>Backend Developer</li> -->
+                         <li>Frontend: HTML, CSS, JavaScript, Bootstrap, React</li>
+                         <li>Backend: Python, Django, Flask</li>
+                         <li>Databases: MySQL, SQLite, PostgreSQL</li>
+                          <li>Version Control: Git, GitHub</li>
+                          <li>API Development: REST API, JSON</li>
+                             <li>Other Tools: VS Code, Postman</li>
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education">
+                    <ul>
+                        <li><span>B.E</span> (ECE)</li>
+                        <li>7.2 CGPA</li>
+                        <li>SVCG College, Puliyangudi</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div id="box">
+        <div class="box1">
+            <h1>Frontend</h1>
+            <ul>
+                <li><i class='bx bxl-html5' style='color:#2538c4'></i>Html</li>
+                <li><i class='bx bxl-css3' style='color:#ddce43'></i>Css</li>
+                <li><i class='bx bxl-javascript' style='color:#d76310'></i>Javascript</li>
+                <li><i class='bx bxl-react' style='color:#1609aa'></i>Reactjs</li>
+            </ul>
+        </div>
+        <div class="box1">
+            <h1>Backend</h1>
+            <ul>
+                <li><i class='bx bxl-python' style='color:#2abc1b'></i>Python</li>
+                <li><i class='bx bxl-django' style='color:#2c1bbc'></i>Django</li>
+                <li>Mysql</li>
+                <li>Github</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="experience-projects" id="experience-projects">
+    <div class="container">
+        <h2 class="sub-title">Experience</h2>
+        <div class="experience">
+            <h3>Python Full Stack Developer</h3>
+            <p><strong>Institute:</strong> Vetri Technology Solutions</p>
+            <p>Training in Python full stack development and internship. Developed web apps with JavaScript and Python, MySQL. Integrated APIs and backend logic. Designed responsive dashboards.</p>
+        </div>
+    </div>
+</section>
+
+{% load static %}
+
+<section id="projects" class="project-section">
+  <h2 class="sub-title">My Projects</h2>
+  <div class="project-container">
+
+    <div class="project-box">
+      <img src="{% static 'portfolio_app/images/screenshot4.png' %}" class="project-image">
+      <h3>Frontend Food Order Website</h3>
+      <p>Made using HTML, CSS, Bootstrap, JavaScript.</p>
+      <a href="https://muppudathiganesh.github.io/foodie/food%20layout/navbar.html" target="_blank">View Project</a>
+    </div>
+
+    <div class="project-box">
+      <img src="{% static 'portfolio_app/images/screenshot6.png' %}" class="project-image">
+      <h3>Digital wedding card</h3>
+      <p>Website with HTML, CSS, Bootstrap, Python, Flask and SQLite backend project.</p>
+      <a href="https://weddcard-1.onrender.com/" target="_blank">View Project</a>
+    </div>
+
+    <div class="project-box">
+      <img src="{% static 'portfolio_app/images/screenshot5.png' %}" class="project-image">
+      <h3>Pet Adoption</h3>
+      <p>Adoption platform using HTML, CSS, and JavaScript.</p>
+      <a href="https://muppudathiganesh.github.io/petweb/pets.html" target="_blank">View Project</a>
+    </div>
+
+    <div class="project-box">
+      <img src="{% static 'portfolio_app/images/screenshot3.png' %}" class="project-image">
+      <h3>Groceries at Door Step</h3>
+      <p>Built with HTML, JavaScript, local storage & SQL.</p>
+      <a href="https://muppudathiganesh.github.io/zeptostep/index.html" target="_blank">View Project</a>
+    </div>
+
+    <div class="project-box">
+      <img src="{% static 'portfolio_app/images/screenshot8.png' %}" class="project-image">
+      <h3>Online kitchen</h3>
+      <p>Built with HTML, CSS, JS, Flask, and SQLite backend.</p>
+      <a href="https://online-kitchen-60nb.onrender.com/" target="_blank">View Project</a>
+    </div>
+
+    <div class="project-box">
+      <img src="{% static 'portfolio_app/images/screenshot7.png' %}" class="project-image">
+      <h3>Service webpage</h3>
+      <p>Built with HTML, CSS, and JavaScript.</p>
+      <a href="https://muppudathiganesh.github.io/mechanicalwork/electromehanical/about.html" target="_blank">View Project</a>
+    </div>
+
+    <div class="project-box">
+      <img src="{% static 'portfolio_app/images/screenshot2.png' %}" class="project-image">
+      <h3>Medical billing</h3>
+      <p>Built with HTML, CSS, and JavaScript.</p>
+      <a href="https://muppudathiganesh.github.io/medicalbill/medical%20billing/login.html" target="_blank">View Project</a>
+    </div>
+
+    <div class="project-box">
+      <img src="{% static 'portfolio_app/images/screenshot1.png' %}" class="project-image">
+      <h3>Employees Payslip</h3>
+      <p>Web app using HTML, JavaScript, Python, SQL.</p>
+      <a href="https://muppudathiganesh.github.io/employeepayslip/employee%20payslip/index.html" target="_blank">View Project</a>
+    </div>
+
+  </div>
+  <div class="seemore"> 
+    <!-- <a href="#" class="see">see more</a> -->
+      <a href="{% static 'portfolio_app/files/Muppudathi_CV.pdf' %}" download class="see">
+        Download CV
+    </a>
+  </div> 
+</section>
+
+
+<div id="contact">
+    <div class="contact-container">
+        <div class="contact-left">
+            <h1 class="sub-title">contact me</h1>
+            <p><i class='bx bx-send' style='color:#d21562'></i> muppuraj11@gmail.com</p>
+            <p><i class='bx bx-phone-call' style='color:#d21562'></i> 9325691870</p>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook-square' style='color:#1719bc'></i></a>
+                <a href="#"><i class='bx bxl-whatsapp-square' style='color:#2dd049'></i></a>
+                <a href="#"><i class='bx bxl-linkedin' style='color:#1532d2'></i></a>
+            </div>
+        </div>
+        <div class="contact-right">
+        
+            <!-- <form id="contactForm" method="POST" action="">
+                
+               
+                  <input type="text" name="name" id="name" placeholder="your name" required>
+                <input type="email" name="email" id="email" placeholder="your email" required>
+                <textarea name="message" id="message" placeholder="your message" required></textarea>  
+                
+               
+                <button type="submit" class="btn btn2">submit</button>
+            </form> -->
+              <form   method="POST" action="">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn2">submit</button>
+            </form>
+             {% if success %}
+        <p style="color:green;">Message sent successfully!</p>
+    {% endif %}
+        </div>
+    </div>
+</div>
+
+ {% block js_css %}
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname) {
+        for (let tablink of tablinks) {
+            tablink.classList.remove("active-link");
+        }
+        for (let tabcontent of tabcontents) {
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+     // Animation for name
+  const names = ["Muppudathi", "fullstackdeveloper"];
+  let nameIndex = 0;
+  const nameElement = document.getElementById("animated-name");
+
+  setInterval(() => {
+    nameIndex = (nameIndex + 1) % names.length;
+    nameElement.textContent = names[nameIndex];
+  }, 3000);
+
+  // Animation for title
+  const titles = ["Full Stack Developer", "Backend Developer", "Frontend Developer"];
+  let titleIndex = 0;
+  const titleElement = document.getElementById("animated-title");
+
+  setInterval(() => {
+    titleIndex = (titleIndex + 1) % titles.length;
+    titleElement.textContent = titles[titleIndex];
+  }, 4000);
+
+  // Animation for skills
+  const skills = ["Html", "CSS", "JavaScript", "ReactJS", "Python", "Django", "Flask", "MYSQL"];
+  let skillIndex = 0;
+  const skillElement = document.getElementById("animated-skills");
+
+  setInterval(() => {
+    skillIndex = (skillIndex + 1) % skills.length;
+    skillElement.textContent = skills[skillIndex];
+  }, 2500);
+    </script>
+{% endblock %}
+
+{% endblock %}
